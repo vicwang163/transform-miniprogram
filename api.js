@@ -44,14 +44,18 @@ module.exports = function * transformApi (form, transformLogs) {
               })
             } else { // 需要转换
               var mappingName = api[ctx][method].mapping ? api[ctx][method].mapping : method
+              var sourceCode
+              var afterCode
               if (path.parent.type !== 'CallExpression' || !api[ctx][method].params) {
                 // 只要替换ctx和函数名即可
                 path.replaceWithSourceString(transformedCtx[ctx] + '.' + mappingName)
+                sourceCode = ctx + '.' + method
+                afterCode = transformedCtx[ctx] + '.' + mappingName
               } else {
                 // 需要替换ctx，函数名和参数
-                var sourceCode = content.slice(path.parent.start, path.parent.end)
+                sourceCode = content.slice(path.parent.start, path.parent.end)
                 // 替换ctx，函数名
-                var afterCode = sourceCode.replace(ctx + '.' + method, transformedCtx[ctx] + '.' + mappingName)
+                afterCode = sourceCode.replace(ctx + '.' + method, transformedCtx[ctx] + '.' + mappingName)
                 if (api[ctx][method].params) {
                   for (var pKey in api[ctx][method].params) {
                     afterCode = afterCode.replace(pKey, api[ctx][method]['params'][pKey])
