@@ -167,7 +167,5 @@ module.exports = {
     hideShareMenu: null,
     updateShareMenu: null,
     getShareInfo: null
-  },
-  app: {
   }
 }

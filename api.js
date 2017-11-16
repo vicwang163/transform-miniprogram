@@ -40,7 +40,7 @@ module.exports = function * transformApi (form, transformLogs) {
                 file: files[i],
                 row: node.loc.start.line,
                 column: node.loc.start.column,
-                message: api[ctx][method].tips
+                message: ctx + '.' + method + ':' + api[ctx][method].tips
               })
             } else { // 需要转换
               var mappingName = api[ctx][method].mapping ? api[ctx][method].mapping : method

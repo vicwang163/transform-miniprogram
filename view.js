@@ -60,7 +60,7 @@ module.exports = function * transformView (form, transformLogs) {
         transformLogs.push({
           file: files[i],
           type: 'error',
-          message: '['+ name +']:不存在'
+          message: '['+ name +']:组件不存在'
         })        
       }
     })
